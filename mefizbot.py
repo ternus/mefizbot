@@ -5,13 +5,13 @@ from textwrap import fill
 import zephyr
 from time import sleep
 from bs4 import BeautifulSoup
-URL = "http://www.metafilter.com/161257/Best-of-women-DNC-Day-4"
+URL = "http://www.metafilter.com/161293/100-days"
 CLASS = "mefi-auto"
-INSTANCE = "dnc"
+INSTANCE = "100-days"
 SENDER = "mefibot"
 
 res = None
-comment_count = 570
+comment_count = 2469
 
 zephyr.init()
 
