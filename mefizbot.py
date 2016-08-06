@@ -28,23 +28,22 @@ while True:
         if comment_count == len(comments):
             continue
 
-
         new_comments = comments[comment_count:]
-	if len(new_comments) > SAFETY_FACTOR:
-	    print "Skipping ahead %d" % (len(new_comments))
-	    comment_count = len(comments)
-	    continue
-	
+        if len(new_comments) > SAFETY_FACTOR:
+            print "Skipping ahead %d" % (len(new_comments))
+            comment_count = len(comments)
+            continue
+
         for comment in new_comments:
             ct = comment.text
             commentmsg = fill(ct[:ct.rfind("posted by")])
-            commenter = ct[ct.rfind("posted by")+9:ct.rfind(' at')].strip()
+            commenter = ct[ct.rfind("posted by") + 9:ct.rfind(' at')].strip()
             print "**** %s: %s..." % (commenter, commentmsg[:60])
-            m = zephyr.ZNotice(fields=[URL, commentmsg], cls=CLASS, sender=commenter, \
+            m = zephyr.ZNotice(
+                fields=[URL, commentmsg], cls=CLASS, sender=commenter,
                                instance=INSTANCE)
             m.send()
         comment_count = len(comments)
     except Exception as e:
         print repr(e)
         comment_count += 1
-
